@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        <form action="/index.php?module=order&method=add" class="form-horizontal" role="form" method="POST" name="order">
+            <div class="form-group">
+                <label for="contact-message" class="col-sm-3 control-label"><b>Delivery</b></label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="prependedInput" name="deliveryID">
+                        <option value="">Please choose delivery...</option>
+                        <option value="1">Delivery1</option>
+                        <option value="2">Delivery2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact-message" class="col-sm-3 control-label"><b>Payment</b></label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="prependedInput" name="paymentID">
+                        <option value="">Please choose payment system...</option>
+                        <option value="1">Method1</option>
+                        <option value="2">Method2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact-message" class="col-sm-3 control-label"><b>Message</b></label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" rows="5" id="contact-message" name="comment"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn pull-right" name="submit_order">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

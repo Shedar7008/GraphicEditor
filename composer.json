@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {"Shop\\": "src/"}
+  },
+  "require": {
+    "ext-mysqli": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6"
+  }
+}

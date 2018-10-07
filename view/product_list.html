@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-3">
+        <form class="form-horizontal" role="form" method="GET" id="color-form">
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <select class="form-control color-select" id="prependedInput" name="color">
+                        <option value="">All</option>
+                        #COLORS#
+                    </select>
+                    <input type="hidden" name="module" value="product" />
+                    <input type="hidden" name="method" value="list" />
+
+                    <input type="submit" class="color-submit-btn" value="Filter" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+#PRODUCT_LIST#
