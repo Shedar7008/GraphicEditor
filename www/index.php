@@ -1,61 +1,48 @@
 <?php
 
-use Shop\Core\MainView;
-use Shop\Module\Guest\Guest;
-use Shop\Module\Guest\GuestRepository;
-use Shop\Module\User\AuthorizedView;
-use Shop\Module\User\NotAuthorizedView;
-use Shop\Module\User\User;
-use Shop\Module\User\UserRepository;
-
 require __DIR__ . '/../includes.php';
 
-if (!array_key_exists('GUEST_ID', $_COOKIE)) {
-    $guestRepository = GuestRepository::getInstance();
-    $guestID = $guestRepository->addItem(new Guest());
-    setcookie('GUEST_ID', $guestID, strtotime('+1 day'));
-    $_COOKIE['GUEST_ID'] = $guestID;
+// /index.php?type=circle&p1=5&p2=yellow&p3=2
+
+$sapiType = php_sapi_name();
+if (substr($sapiType, 0, 3) == 'cgi') {
+    $shape = $_GET['type'] ?? null;
+    array_shift($_GET);
+
+    $params = [];
+    foreach ($_GET as $key => $value) {
+        $params[] = $value;
+    }
+
+    if (!$shape || !$params[0] || !$params[1]  || !$params[2]  ) {
+        header("HTTP/1.0 404 Not Found");
+    }
+}
+elseif(substr($sapiType, 0, 3) == 'cli'){
+    $shape = $argv[1] ?? '';
+    array_shift($argv);
+    array_shift($argv);
+    $params = $argv;
+}
+else
+{
+    die("Unknown SAPI.");
 }
 
-$module = $_GET['module'] ?? null;
-$method = $_GET['method'] ?? null;
-$ajax = $_GET['ajax'] ?? null;
-
-if (!$module || !$method) {
-    header("HTTP/1.0 404 Not Found");
-    die();
-}
+$module = "draw";
+$method = "list";
 
 $moduleName = ucfirst($module);
 $controllerName = $moduleName . 'Controller';
 $className = "Shop\\Module\\$moduleName\\$controllerName";
-$controller = new $className();
-$title = '';
+$controller = new $className($params);
+
+
 try {
-    $html = $controller->$method($title);
-} catch (Exception $e) {
-    $html = $e->getMessage();
+    $data = $controller->$method($shape, $params);
+} catch (\Exception $e) {
+    $data = $e->getMessage();
 }
 
-if (array_key_exists('ajax', $_GET)) {
-    echo $html;
-    die();
-}
+print_r($data);
 
-$userRepository = UserRepository::getInstance();
-$user = $userRepository->getUser();
-if ($user instanceof User) {
-    $authorizedView = new AuthorizedView();
-    $userHtml = $authorizedView->fill(['NAME' => $user->getName()]);
-} else {
-    $notAuthorizedView = new NotAuthorizedView();
-    $userHtml = $notAuthorizedView->fill();
-}
-
-$mainView = new MainView();
-$html = $mainView->fill([
-    'WORK_AREA' => $html,
-    'TITLE' => $title,
-    'USER' => $userHtml,
-]);
-echo $html;
