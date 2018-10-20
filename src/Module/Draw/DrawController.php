@@ -9,7 +9,7 @@ class DrawController
     /**
      * @param string $className
      * @param array $params
-     * @return string
+     * @return array
      * @throws NotSupportedClassException
      */
     public function list(string $className, array $params)
