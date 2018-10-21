@@ -18,19 +18,18 @@ class ShapeFactory
         $className = "Shop\\Module\\Draw\\Draw$className";
 
         if (!class_exists($className)) {
-            throw new NotSupportedClassException();
+            throw new NotSupportedClassException("Not supported shape class.");
         }
 
         $matches = [];
         $impl = class_implements($className);
-        foreach ($impl as $value)
-        {
-            if(preg_match("/DrawInterface/i", $value, $matches)) {
+        foreach ($impl as $value) {
+            if (preg_match("/DrawInterface/i", $value, $matches)) {
                 break;
             }
         }
 
-        if(empty($matches)){
+        if (empty($matches)) {
             throw new NotSupportedClassException();
         }
 

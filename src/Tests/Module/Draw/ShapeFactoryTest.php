@@ -5,7 +5,6 @@ namespace Shop\Tests\Module\Draw;
 use PHPUnit\Framework\TestCase;
 use Shop\Module\Draw\DrawCircle;
 use Shop\Module\Draw\DrawSquare;
-use Shop\Module\Draw\Exception\IncorrectParametersException;
 use Shop\Module\Draw\Exception\NotSupportedClassException;
 use Shop\Module\Draw\ShapeFactory;
 
@@ -52,40 +51,12 @@ class ShapeFactoryTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @throws NotSupportedClassException
+     */
     public function testFactoryException()
     {
         $this->expectException(NotSupportedClassException::class);
         $this->factory->factory("triangle", [5, "red", 2]);
     }
-
-   /* public function testFactoryException2()
-    {
-        $this->expectException(IncorrectParametersException::class);
-        $this->factory->factory("circle", ["red", 3, 2]);
-    }*/
-
-    /*public static function testFactory(string $shape, array $params): DrawInterface
-    {
-        $className = ucfirst($shape);
-        $className = "Shop\\Module\\Draw\\Draw$className";
-
-        if (!class_exists($className)) {
-            throw new NotSupportedClassException();
-        }
-
-        $matches = [];
-        $impl = class_implements($className);
-        foreach ($impl as $value)
-        {
-            if(preg_match("/DrawInterface/i", $value, $matches)) {
-                break;
-            }
-        }
-
-        if(empty($matches)){
-            throw new NotSupportedClassException();
-        }
-
-        return new $className($params);
-    }*/
 }

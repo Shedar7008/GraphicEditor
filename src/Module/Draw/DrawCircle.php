@@ -22,7 +22,7 @@ class DrawCircle implements DrawInterface
         $borderSize = (int)($params[2] ?? 0);
 
         if (empty($radius) || empty($color) || empty($borderSize)) {
-            throw new IncorrectParametersException();
+            throw new IncorrectParametersException("Incorrect parameters for Circle.");
         }
 
         $this->radius = $radius;
@@ -30,6 +30,9 @@ class DrawCircle implements DrawInterface
         $this->borderSize = $borderSize;
     }
 
+    /**
+     * @return array
+     */
     public function draw(): array
     {
         return [1.2, 2.3, 3.4, 4.5];

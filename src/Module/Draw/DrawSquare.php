@@ -20,8 +20,9 @@ class DrawSquare implements DrawInterface
         $a = (int)($params[0] ?? 0);
         $color = $params[1] ?? '';
         $borderSize = (int)($params[2] ?? 0);
+
         if (empty($a) || empty($color) || empty($borderSize)) {
-            throw new IncorrectParametersException();
+            throw new IncorrectParametersException("Incorrect parameters for Square.");
         }
 
         $this->a = $a;
@@ -29,6 +30,9 @@ class DrawSquare implements DrawInterface
         $this->borderSize = $borderSize;
     }
 
+    /**
+     * @return array
+     */
     public function draw(): array
     {
         return [2.3, 3.4];

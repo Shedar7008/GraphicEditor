@@ -2,8 +2,6 @@
 
 require __DIR__ . '/../includes.php';
 
-// /index.php?type=circle&p1=5&p2=yellow&p3=2
-
 $sapiType = php_sapi_name();
 if (substr($sapiType, 0, 3) == 'cgi') {
     $shape = $_GET['type'] ?? null;

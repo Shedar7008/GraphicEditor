@@ -12,20 +12,23 @@ class DrawCircleTest extends TestCase
 {
     /**
      * @return array
-     * @throws Exception
      */
     public function drawCircleDataProvider()
     {
         return array(
-            [[5, "red", 2], [1.2, 2.3, 3.4, 4.5]]
+            [[5, "red", 2], [1.2, 2.3, 3.4, 4.5]],
+            [["2", "red", 5], [1.2, 2.3, 3.4, 4.5]]
         );
     }
 
+    /**
+     * @return array
+     */
     public function drawCircleExceptionDataProvider()
     {
         return array(
             [["red", 2]],
-            [["dddd", "red", 2]]
+            [["green", "red", 2]]
         );
     }
 
@@ -44,13 +47,12 @@ class DrawCircleTest extends TestCase
 
     /**
      * @dataProvider drawCircleExceptionDataProvider
+     * @param $params
      * @throws Exception
      */
     public function testDrawCircleException($params)
     {
         $this->expectException(IncorrectParametersException::class);
         new DrawCircle($params);
-
     }
-
 }
