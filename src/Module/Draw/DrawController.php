@@ -6,10 +6,12 @@ use GraphicEditor\Module\Draw\Exception\NotSupportedClassException;
 
 class DrawController
 {
+
     /**
      * @param string $className
      * @param array $params
      * @return array
+     * @throws Exception\IncorrectParametersException
      * @throws NotSupportedClassException
      */
     public function drawShape(string $className, array $params)

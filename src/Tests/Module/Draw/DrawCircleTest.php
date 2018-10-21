@@ -2,7 +2,6 @@
 
 namespace GraphicEditor\Tests\Module\Draw;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
 use GraphicEditor\Module\Draw\DrawCircle;
 use GraphicEditor\Module\Draw\Exception\IncorrectParametersException;
