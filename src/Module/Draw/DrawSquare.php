@@ -1,8 +1,8 @@
 <?php
 
-namespace Shop\Module\Draw;
+namespace GraphicEditor\Module\Draw;
 
-use Shop\Module\Draw\Exception\IncorrectParametersException;
+use GraphicEditor\Module\Draw\Exception\IncorrectParametersException;
 
 class DrawSquare implements DrawInterface
 {
@@ -11,9 +11,9 @@ class DrawSquare implements DrawInterface
     private $borderSize;
 
     /**
-     * DrawCircle constructor.
+     * DrawSquare constructor.
      * @param array $params
-     * @throws \Exception
+     * @throws IncorrectParametersException
      */
     public function __construct(array $params)
     {

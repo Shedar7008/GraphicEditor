@@ -4,16 +4,13 @@ require __DIR__ . '/../includes.php';
 
 $sapiType = php_sapi_name();
 if (substr($sapiType, 0, 3) == 'cgi') {
-    $shape = $_GET['type'] ?? null;
+    $shape = $_GET['type'] ?? '';
     array_shift($_GET);
 
+    //Transform array to a proper form
     $params = [];
     foreach ($_GET as $key => $value) {
         $params[] = $value;
-    }
-
-    if (!$shape || !$params[0] || !$params[1]  || !$params[2]  ) {
-        header("HTTP/1.0 404 Not Found");
     }
 }
 elseif(substr($sapiType, 0, 3) == 'cli'){
@@ -28,11 +25,11 @@ else
 }
 
 $module = "draw";
-$method = "list";
+$method = "drawShape";
 
 $moduleName = ucfirst($module);
 $controllerName = $moduleName . 'Controller';
-$className = "Shop\\Module\\$moduleName\\$controllerName";
+$className = "GraphicEditor\\Module\\$moduleName\\$controllerName";
 $controller = new $className($params);
 
 
@@ -43,4 +40,3 @@ try {
 }
 
 print_r($data);
-

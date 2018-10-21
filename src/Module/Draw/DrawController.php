@@ -1,8 +1,8 @@
 <?php
 
-namespace Shop\Module\Draw;
+namespace GraphicEditor\Module\Draw;
 
-use Shop\Module\Draw\Exception\NotSupportedClassException;
+use GraphicEditor\Module\Draw\Exception\NotSupportedClassException;
 
 class DrawController
 {
@@ -12,7 +12,7 @@ class DrawController
      * @return array
      * @throws NotSupportedClassException
      */
-    public function list(string $className, array $params)
+    public function drawShape(string $className, array $params)
     {
         $shape = ShapeFactory::factory($className, $params);
         $result = $shape->draw();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\Module\Draw\Exception;
+namespace GraphicEditor\Module\Draw\Exception;
 
 use Exception;
 

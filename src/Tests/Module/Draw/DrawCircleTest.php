@@ -1,11 +1,11 @@
 <?php
 
-namespace Shop\Tests\Module\Draw;
+namespace GraphicEditor\Tests\Module\Draw;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use Shop\Module\Draw\DrawCircle;
-use Shop\Module\Draw\Exception\IncorrectParametersException;
+use GraphicEditor\Module\Draw\DrawCircle;
+use GraphicEditor\Module\Draw\Exception\IncorrectParametersException;
 
 
 class DrawCircleTest extends TestCase

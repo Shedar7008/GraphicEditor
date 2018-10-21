@@ -1,12 +1,12 @@
 <?php
 
-namespace Shop\Tests\Module\Draw;
+namespace GraphicEditor\Tests\Module\Draw;
 
 use PHPUnit\Framework\TestCase;
-use Shop\Module\Draw\DrawCircle;
-use Shop\Module\Draw\DrawSquare;
-use Shop\Module\Draw\Exception\NotSupportedClassException;
-use Shop\Module\Draw\ShapeFactory;
+use GraphicEditor\Module\Draw\DrawCircle;
+use GraphicEditor\Module\Draw\DrawSquare;
+use GraphicEditor\Module\Draw\Exception\NotSupportedClassException;
+use GraphicEditor\Module\Draw\ShapeFactory;
 
 class ShapeFactoryTest extends TestCase
 {

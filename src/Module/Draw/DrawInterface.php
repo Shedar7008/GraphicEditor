@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\Module\Draw;
+namespace GraphicEditor\Module\Draw;
 
 
 interface DrawInterface

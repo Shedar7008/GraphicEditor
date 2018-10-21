@@ -1,8 +1,8 @@
 <?php
 
-namespace Shop\Module\Draw;
+namespace GraphicEditor\Module\Draw;
 
-use Shop\Module\Draw\Exception\NotSupportedClassException;
+use GraphicEditor\Module\Draw\Exception\NotSupportedClassException;
 
 class ShapeFactory
 {
@@ -15,7 +15,7 @@ class ShapeFactory
     public static function factory(string $shape, array $params): DrawInterface
     {
         $className = ucfirst($shape);
-        $className = "Shop\\Module\\Draw\\Draw$className";
+        $className = "GraphicEditor\\Module\\Draw\\Draw$className";
 
         if (!class_exists($className)) {
             throw new NotSupportedClassException("Not supported shape class.");
