@@ -2,6 +2,7 @@
 
 namespace GraphicEditor\Tests\Module\Draw;
 
+use GraphicEditor\Module\Draw\Exception\IncorrectParametersException;
 use PHPUnit\Framework\TestCase;
 use GraphicEditor\Module\Draw\DrawCircle;
 use GraphicEditor\Module\Draw\DrawSquare;
@@ -29,8 +30,8 @@ class ShapeFactoryTest extends TestCase
      */
     public function factoryDataProvider()
     {
-        $expected1 = new DrawCircle([5, "red", 2]);
-        $expected2 = new DrawSquare([2, "blue", 3]);
+        $expected1 = new DrawCircle(5, "red", 2);
+        $expected2 = new DrawSquare(2, "blue", 3);
         return array(
             ["circle", [5, "red", 2], $expected1],
             ["square", [2, "blue", 3], $expected2],
@@ -43,6 +44,7 @@ class ShapeFactoryTest extends TestCase
      * @param $b
      * @param $expected
      * @throws NotSupportedClassException
+     * @throws IncorrectParametersException
      */
     public function testFactory($a, $b, $expected)
     {
@@ -53,6 +55,7 @@ class ShapeFactoryTest extends TestCase
 
     /**
      * @throws NotSupportedClassException
+     * @throws IncorrectParametersException
      */
     public function testFactoryException()
     {

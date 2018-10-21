@@ -2,6 +2,7 @@
 
 namespace GraphicEditor\Module\Draw;
 
+use GraphicEditor\Module\Draw\Exception\IncorrectParametersException;
 use GraphicEditor\Module\Draw\Exception\NotSupportedClassException;
 
 class ShapeFactory
@@ -11,6 +12,7 @@ class ShapeFactory
      * @param array $params
      * @return DrawInterface
      * @throws NotSupportedClassException
+     * @throws IncorrectParametersException
      */
     public static function factory(string $shape, array $params): DrawInterface
     {
@@ -33,6 +35,13 @@ class ShapeFactory
             throw new NotSupportedClassException();
         }
 
-        return new $className($params);
+        try{
+            return new $className(...$params);
+        }
+        catch (\Error $e)
+        {
+            throw new IncorrectParametersException("Incorrect parameters for Circle.");
+        }
+
     }
 }

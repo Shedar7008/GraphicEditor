@@ -12,15 +12,13 @@ class DrawCircle implements DrawInterface
 
     /**
      * DrawCircle constructor.
-     * @param array $params
+     * @param int $radius
+     * @param string $color
+     * @param int $borderSize
      * @throws IncorrectParametersException
      */
-    public function __construct(array $params)
+    public function __construct(int $radius, string $color, int $borderSize)
     {
-        $radius = (int)($params[0] ?? 0);
-        $color = $params[1] ?? '';
-        $borderSize = (int)($params[2] ?? 0);
-
         if (empty($radius) || empty($color) || empty($borderSize)) {
             throw new IncorrectParametersException("Incorrect parameters for Circle.");
         }

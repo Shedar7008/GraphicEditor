@@ -12,15 +12,13 @@ class DrawSquare implements DrawInterface
 
     /**
      * DrawSquare constructor.
-     * @param array $params
+     * @param int $a
+     * @param string $color
+     * @param int $borderSize
      * @throws IncorrectParametersException
      */
-    public function __construct(array $params)
+    public function __construct(int $a, string $color, int $borderSize)
     {
-        $a = (int)($params[0] ?? 0);
-        $color = $params[1] ?? '';
-        $borderSize = (int)($params[2] ?? 0);
-
         if (empty($a) || empty($color) || empty($borderSize)) {
             throw new IncorrectParametersException("Incorrect parameters for Square.");
         }

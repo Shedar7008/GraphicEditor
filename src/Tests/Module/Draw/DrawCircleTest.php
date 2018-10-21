@@ -15,10 +15,9 @@ class DrawCircleTest extends TestCase
      */
     public function drawCircleDataProvider()
     {
-        return array(
-            [[5, "red", 2], [1.2, 2.3, 3.4, 4.5]],
-            [["2", "red", 5], [1.2, 2.3, 3.4, 4.5]]
-        );
+        return [
+            [5, "red", 2, [1.2, 2.3, 3.4, 4.5]],
+        ];
     }
 
     /**
@@ -26,33 +25,58 @@ class DrawCircleTest extends TestCase
      */
     public function drawCircleExceptionDataProvider()
     {
-        return array(
-            [["red", 2]],
-            [["green", "red", 2]]
-        );
+        return [
+            [5, "red", 0]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function drawCircleErrorDataProvider()
+    {
+        return [
+            [["green", "red", 5]],
+            [["red", 5]]
+        ];
     }
 
     /**
      * @dataProvider drawCircleDataProvider
-     * @param $params
+     * @param $p1
+     * @param $p2
+     * @param $p3
      * @param $expected
-     * @throws Exception
+     * @throws IncorrectParametersException
      */
-    public function testDrawCircle($params, $expected)
+    public function testDrawCircle($p1, $p2, $p3, $expected)
     {
-        $circle = new DrawCircle($params);
+        $circle = new DrawCircle($p1, $p2, $p3);
         $result = $circle->draw();
         $this->assertEquals($expected, $result);
     }
 
     /**
      * @dataProvider drawCircleExceptionDataProvider
-     * @param $params
-     * @throws Exception
+     * @param $p1
+     * @param $p2
+     * @param $p3
+     * @throws IncorrectParametersException
      */
-    public function testDrawCircleException($params)
+    public function testDrawCircleException($p1, $p2, $p3)
     {
         $this->expectException(IncorrectParametersException::class);
-        new DrawCircle($params);
+        new DrawCircle($p1, $p2, $p3);
+    }
+
+    /**
+     * @dataProvider drawCircleErrorDataProvider
+     * @param array $params
+     * @throws IncorrectParametersException
+     */
+    public function testDrawCircleError(array $params)
+    {
+        $this->expectException(\Error::class);
+        new DrawCircle(...$params);
     }
 }
